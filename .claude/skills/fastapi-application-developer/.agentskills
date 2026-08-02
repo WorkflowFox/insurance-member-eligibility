@@ -1,0 +1,81 @@
+specificationVersion: "1.0"
+skill:
+  name: fastapi-application-developer
+  version: "1.0.0"
+  author: WorkflowFox
+  createdDate: "2026-08-02"
+  license: Proprietary
+  category: full-stack-development
+compliance:
+  - id: role-boundaries-defined
+    description: >
+      SKILL.md defines the Senior FastAPI Application Developer role,
+      its priorities, and its professional boundaries (Section 1).
+    satisfied: true
+  - id: input-convention-documented
+    description: >
+      Required specification inputs and the OpenAPI contract are
+      documented, with per-file extraction guidance (Section 2).
+    satisfied: true
+  - id: missing-input-protocol
+    description: >
+      The skill stops, lists missing files, explains required content,
+      and waits rather than generating code on incomplete inputs
+      (Sections 2 and 6).
+    satisfied: true
+  - id: claude-md-boundary-respected
+    description: >
+      CLAUDE.md is read only for environment values; business rules or
+      acceptance criteria found there are flagged as misplaced, not
+      treated as authoritative (Section 2).
+    satisfied: true
+  - id: workflow-defined
+    description: >
+      An 11-step, specification-driven implementation workflow is
+      defined, from input validation through final validation and
+      traceability reporting (Section 3).
+    satisfied: true
+  - id: contract-authoritative
+    description: >
+      The OpenAPI contract is treated as the authoritative source for
+      externally visible API behavior throughout the workflow.
+    satisfied: true
+  - id: layered-architecture-enforced
+    description: >
+      Business logic is required to live outside FastAPI routes and
+      repositories, per references/fastapi-architecture-patterns.md.
+    satisfied: true
+  - id: no-speculative-complexity
+    description: >
+      The skill instructs against speculative abstractions, unrequested
+      dependencies, and unrequested infrastructure (Section 5,
+      "Simplicity First").
+    satisfied: true
+  - id: validation-checklist-present
+    description: >
+      A concrete validation checklist is defined and must be honestly
+      reported against, including Ruff and Pytest results (Section 4).
+    satisfied: true
+  - id: no-unverified-success-claims
+    description: >
+      The skill explicitly prohibits claiming validation passed without
+      actual command output evidence (Sections 3 and 4).
+    satisfied: true
+  - id: reusable-references-provided
+    description: >
+      Six reference documents, each covering one distinct professional
+      concern, are provided under references/.
+    satisfied: true
+  - id: reusable-assets-provided
+    description: >
+      A generic project-structure template and a traceability-matrix
+      template are provided under assets/, free of project-specific
+      business rules.
+    satisfied: true
+  - id: no-project-specific-rules
+    description: >
+      No Member Eligibility-specific (or any other project-specific)
+      business rules, field names, or endpoints are embedded in the
+      skill; all such content is sourced from supplied specifications
+      at invocation time.
+    satisfied: true
