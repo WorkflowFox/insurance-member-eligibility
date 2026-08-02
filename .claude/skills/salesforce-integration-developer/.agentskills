@@ -1,0 +1,92 @@
+specificationVersion: "1.0"
+skill:
+  name: salesforce-integration-developer
+  version: "1.0.0"
+  author: WorkflowFox
+  createdDate: "2026-08-02"
+  license: Proprietary
+  category: full-stack-development
+compliance:
+  - id: role-boundaries-defined
+    description: >
+      SKILL.md defines the Senior Salesforce Integration Developer role,
+      its ownership of UX/integration/testability, and its explicit
+      exclusion from business logic (Section 1).
+    satisfied: true
+  - id: input-convention-documented
+    description: >
+      Required specification inputs and the OpenAPI contract are
+      documented, with per-file extraction guidance (Section 2).
+    satisfied: true
+  - id: missing-input-protocol
+    description: >
+      The skill stops, lists missing files, explains required content,
+      and waits rather than generating Apex, LWC, or metadata on
+      incomplete inputs (Sections 2 and 6).
+    satisfied: true
+  - id: claude-md-boundary-respected
+    description: >
+      CLAUDE.md is read only for environment values; business rules or
+      acceptance criteria found there are flagged as misplaced, not
+      treated as authoritative (Section 2).
+    satisfied: true
+  - id: workflow-defined
+    description: >
+      A 10-step, specification-driven implementation workflow is
+      defined, from specification validation through implementation
+      summary (Section 3).
+    satisfied: true
+  - id: contract-authoritative
+    description: >
+      The OpenAPI contract is treated as the authoritative source for
+      every Apex wrapper field, endpoint, and status code throughout the
+      workflow.
+    satisfied: true
+  - id: thin-apex-and-lwc-enforced
+    description: >
+      Business logic is required to live in the backend service, not in
+      Apex or Lightning Web Components, per
+      references/apex-integration-patterns.md and
+      references/lwc-best-practices.md.
+    satisfied: true
+  - id: named-credentials-required
+    description: >
+      Callouts must use Named Credentials; endpoint URLs, API keys, and
+      tokens must never be hardcoded in Apex, per
+      references/named-credentials.md.
+    satisfied: true
+  - id: no-speculative-complexity
+    description: >
+      The skill instructs against speculative abstractions, unrequested
+      custom objects/metadata, and unrequested persistence (Section 5,
+      "Simplicity First").
+    satisfied: true
+  - id: validation-checklist-present
+    description: >
+      A concrete validation checklist is defined and must be honestly
+      reported against, including Apex and LWC test results (Section 4).
+    satisfied: true
+  - id: no-unverified-success-claims
+    description: >
+      The skill explicitly prohibits claiming validation passed without
+      actual test-run evidence (Sections 3 and 4).
+    satisfied: true
+  - id: reusable-references-provided
+    description: >
+      Six reference documents, each covering one distinct professional
+      concern, are provided under references/.
+    satisfied: true
+  - id: reusable-assets-provided
+    description: >
+      A generic LWC folder-structure template and a generic Apex
+      integration-class template are provided under assets/, free of
+      project-specific business rules.
+    satisfied: true
+  - id: no-project-specific-rules
+    description: >
+      No Member Eligibility-specific (or any other project-specific)
+      business rules, field names, or endpoints are embedded in the
+      skill; all such content is sourced from supplied specifications
+      at invocation time and lives in the generated application, never
+      in this skill directory.
+    satisfied: true
