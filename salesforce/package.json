@@ -1,0 +1,14 @@
+{
+  "name": "member-eligibility-verification-salesforce",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Salesforce Lightning Web Component + Apex client for the Member Eligibility Verification reference implementation.",
+  "scripts": {
+    "test": "sfdx-lwc-jest",
+    "test:watch": "sfdx-lwc-jest --watch",
+    "test:coverage": "sfdx-lwc-jest --coverage"
+  },
+  "devDependencies": {
+    "@salesforce/sfdx-lwc-jest": "^8.0.0"
+  }
+}
