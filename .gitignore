@@ -3,6 +3,7 @@ node_modules/
 .sf/
 .sfdx/
 coverage/
+.DS_Store
 
 # Python / backend
 backend/.venv/
