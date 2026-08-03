@@ -11,15 +11,4 @@ The showcase explains:
 - The validation evidence
 - The lessons learned
 
-These assets may later be adapted for:
-
-- WorkflowFox website content
-- LinkedIn posts
-- Demo videos
-- Client presentations
-
-## Files
-
-- `case-study.md` — canonical client-facing story
-- `linkedin.md` — LinkedIn content derived from the case study
-- `demo-script.md` — short walkthrough for live or recorded demonstrations
+These assets may

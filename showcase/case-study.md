@@ -1,19 +1,9 @@
-# Problem
+# WorkflowFox Showcase #1
 
-# Business Context
+# AI-Assisted Development of an Insurance Member Eligibility Verification System
 
-# Challenges
+---
 
-# Solution
+## Executive Summary
 
-# Architecture
-
-# AI-Assisted Engineering Process
-
-# Validation
-
-# Lessons Learned
-
-# Business Value
-
-# What's Next
+Member eligibility verification is o
