@@ -4,6 +4,8 @@ node_modules/
 .sfdx/
 coverage/
 .DS_Store
+.env
+.vscode/
 
 # Python / backend
 backend/.venv/
@@ -12,4 +14,3 @@ backend/**/__pycache__/
 backend/.pytest_cache/
 backend/.ruff_cache/
 *.pyc
-
