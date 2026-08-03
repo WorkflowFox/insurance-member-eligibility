@@ -50,6 +50,39 @@ called from multiple Named Credentials. Use a legacy Named Credential only
 for a simple static-key or Basic-auth endpoint where the separated model
 would add configuration overhead without benefit.
 
+**If the OpenAPI contract defines no `security` requirement and no
+`securitySchemes`** — a realistic, non-edge-case scenario for an internal
+or early-stage service, not something to treat as an oversight — configure
+the Named Credential's Authentication Protocol as **No Authentication**.
+Do not invent an OAuth flow, JWT scheme, API key header, or any External
+Credential principal the contract and architecture documents don't
+describe; guessing an authentication mechanism is explicitly against this
+skill's role boundaries (see [SKILL.md](../SKILL.md) Section 1). If the
+architecture documents mention authentication as a *future* enhancement,
+it is acceptable to write a separate, clearly-labeled forward-looking
+guide for that future state — but never configure it as if it were a
+current requirement.
+
+---
+
+## Configuration Steps (No Authentication)
+
+1. **Setup → Named Credentials → New Legacy Named Credential** (or New
+   Named Credential — no External Credential is needed since there is no
+   authentication to separate out).
+2. **URL**: the API's base URL as defined in the OpenAPI contract's
+   `servers` entry for the target environment. Treat this as a
+   placeholder that must be replaced with the real deployed backend's
+   HTTPS URL before non-local use if the contract only documents a local
+   development server.
+3. **Authentication Protocol**: `No Authentication`.
+4. **Generate Authorization Header**: leave unchecked — there is no
+   header to generate.
+5. If a future contract version is expected to add authentication,
+   document that as separate, explicitly-future-labeled guidance (see
+   "Configuration Steps (OAuth 2.0)" below for the shape such a guide
+   should take) rather than configuring it now.
+
 ---
 
 ## Configuration Steps (Static API Key / Basic Auth)

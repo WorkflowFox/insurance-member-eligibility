@@ -84,6 +84,27 @@ deserializes, and presents whatever the mocked backend returned.
 - Use `createElement` from `lwc` to instantiate the component in each
   test, and `document.body.appendChild` to attach it, matching the
   standard LWC Jest pattern.
+- Exclude `__tests__/` from metadata deployment with a `.forceignore`
+  entry (`**/__tests__/**`). Without it, a metadata deploy will try to
+  compile Jest test files as if they were component source and fail on
+  Jest-only syntax (e.g., `import { createElement } from 'lwc'`) — see
+  [assets/lwc-project-template.md](../assets/lwc-project-template.md).
+- Component code that gates on a base-component validation method (e.g.,
+  `reportValidity()`) must check for an explicit `false`, not plain
+  falsiness — `sfdx-lwc-jest`'s stubs return `undefined` from these
+  methods, and a falsy-only check silently blocks every test run. See
+  [local-tooling-and-environment.md](local-tooling-and-environment.md)
+  and [ui-design-guidelines.md](ui-design-guidelines.md).
+- If a full local Jest run hangs with no output, check whether the
+  project's working directory is inside an actively-synchronized cloud
+  storage folder (iCloud Drive, OneDrive, Dropbox) before assuming a code
+  defect — see
+  [local-tooling-and-environment.md](local-tooling-and-environment.md).
+- If Jest fails to parse with `SyntaxError: Unexpected token 'export'`
+  inside `@lwc/engine-dom`, this is a known `sfdx-lwc-jest` resolver/ESM
+  incompatibility, not a project defect — see
+  [local-tooling-and-environment.md](local-tooling-and-environment.md)
+  for the `jest.config.js` fix.
 
 ---
 

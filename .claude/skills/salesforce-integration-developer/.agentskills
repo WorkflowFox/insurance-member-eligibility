@@ -1,9 +1,10 @@
 specificationVersion: "1.0"
 skill:
   name: salesforce-integration-developer
-  version: "1.0.0"
+  version: "1.1.0"
   author: WorkflowFox
   createdDate: "2026-08-02"
+  lastUpdatedDate: "2026-08-03"
   license: Proprietary
   category: full-stack-development
 compliance:
@@ -89,4 +90,61 @@ compliance:
       skill; all such content is sourced from supplied specifications
       at invocation time and lives in the generated application, never
       in this skill directory.
+    satisfied: true
+  - id: execution-modes-defined
+    description: >
+      Three execution modes (Metadata Only, Connected Validation,
+      Deployment) are defined with Metadata Only as the default, and org
+      access requires explicit, current-invocation authorization naming
+      a specific org alias (Section 2, references/org-connection-safety.md).
+    satisfied: true
+  - id: org-targeting-discipline-enforced
+    description: >
+      Every Salesforce CLI command that touches an org must pass
+      --target-org/-o with the authorized alias; the default org and any
+      other authenticated org must never be relied upon or targeted
+      (references/org-connection-safety.md).
+    satisfied: true
+  - id: validation-evidence-distinguished
+    description: >
+      Static review, local tests, org compilation, org tests, and
+      deployment are defined as distinct evidence categories that must
+      never be described as one another (Section 5,
+      references/org-connection-safety.md).
+    satisfied: true
+  - id: apex-flat-classes-structure
+    description: >
+      assets/apex-project-template.md and SKILL.md Steps 3 and 7 require
+      Apex classes (including test classes) to remain flat in classes/
+      with no nested subfolders, matching the ApexClass metadata type's
+      actual constraints.
+    satisfied: true
+  - id: lwc-forceignore-required
+    description: >
+      assets/lwc-project-template.md and SKILL.md Step 6 require a
+      .forceignore excluding **/__tests__/** so Jest test files are never
+      deployed as component source.
+    satisfied: true
+  - id: named-credential-no-auth-documented
+    description: >
+      references/named-credentials.md documents a No Authentication
+      configuration path for contracts with no security scheme, and
+      explicitly forbids inventing OAuth, JWT, API keys, or External
+      Credential principals the contract does not describe.
+    satisfied: true
+  - id: local-tooling-pitfalls-documented
+    description: >
+      references/local-tooling-and-environment.md documents the
+      sfdx-lwc-jest/@lwc/engine-dom ESM-CJS resolver mismatch, the
+      reportValidity()-stub-returns-undefined gotcha (with the === false
+      fix reflected in references/ui-design-guidelines.md), and the
+      cloud-synced-directory Jest hang pattern with its workaround.
+    satisfied: true
+  - id: engineering-journal-required
+    description: >
+      SKILL.md Section 8 requires every invocation to create or update an
+      engineering journal entry covering purpose, skill used, inputs,
+      plan, files created, architecture decisions, validation results
+      (evidence-typed), assumptions, specification conflicts, what went
+      well, improvements identified, and reusable lessons learned.
     satisfied: true

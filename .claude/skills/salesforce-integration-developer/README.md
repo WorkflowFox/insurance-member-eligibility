@@ -17,6 +17,13 @@ application — those always come from the specification files provided at
 invocation time, and business logic itself always stays in the backend
 service, never in Salesforce.
 
+By default the skill never touches a Salesforce org — it only generates
+source, tests, and documentation ("Metadata Only" mode). Authenticating,
+deploying, or running tests against an org requires the invocation to
+explicitly authorize it and name a specific org alias. See
+[SKILL.md](SKILL.md) Section 2 and
+[references/org-connection-safety.md](references/org-connection-safety.md).
+
 ## When it activates
 
 Use this skill whenever a task asks you to implement (or extend) a
@@ -39,7 +46,7 @@ docs/05-api-design.md
 contracts/<name>.yaml
 ```
 
-See [SKILL.md](SKILL.md) Section 2 for what the role extracts from each
+See [SKILL.md](SKILL.md) Section 3 for what the role extracts from each
 file.
 
 ## Expected output
@@ -60,6 +67,9 @@ A complete Salesforce client implementation:
   error states
 - Developer documentation (Named Credential setup, how to run tests,
   known limitations, validation status)
+- An engineering journal entry documenting the implementation journey —
+  files created, architecture decisions, actual validation evidence,
+  assumptions, and reusable lessons (see [SKILL.md](SKILL.md) Section 8)
 
 ## How to invoke it
 
@@ -67,8 +77,23 @@ Reference the skill by name (`salesforce-integration-developer`) or
 describe the task in terms it matches (e.g., "use the Salesforce
 integration developer skill to build the client from the docs and
 contract"). The skill walks through the 10-step workflow defined in
-[SKILL.md](SKILL.md) Section 3, starting with validating all required
-inputs.
+[SKILL.md](SKILL.md) Section 4, starting with confirming the execution
+mode and validating all required inputs.
+
+## Execution modes
+
+The skill defaults to **Metadata Only**: it generates source, tests, and
+documentation, and never authenticates to, deploys to, or otherwise
+touches a Salesforce org. Two additional modes — **Connected
+Validation** (deploy and run tests against one named org to prove
+correctness) and **Deployment** (leave the code deployed in one named
+org) — activate only when the invocation explicitly authorizes them and
+names a specific org alias; authorization does not carry forward from a
+prior session. Every org-scoped command then targets that alias
+explicitly via `--target-org`/`-o` — never the CLI's default org, never
+any other authenticated org. See [SKILL.md](SKILL.md) Section 2 and
+[references/org-connection-safety.md](references/org-connection-safety.md)
+for the full mechanics.
 
 ## How missing inputs are handled
 
@@ -93,18 +118,27 @@ service.
 Before reporting completion, the skill:
 
 - Re-checks every Apex wrapper field and every callout path/method/status
-  code against the OpenAPI contract.
+  code against the OpenAPI contract (**static review**).
 - Confirms no business logic (e.g., eligibility evaluation) was introduced
   in Apex or the Lightning Web Component.
 - Confirms every callout uses a Named Credential — no hardcoded endpoint
   URLs, API keys, or tokens.
-- Runs Apex tests and LWC Jest tests when a target org or local toolchain
-  is available, and reports actual output — it does not claim a check
-  passed without having run it.
+- Runs LWC Jest tests locally when a Node toolchain is available
+  (**local tests** — independent of execution mode).
+- Under Connected Validation or Deployment mode only, deploys to and runs
+  Apex tests in the authorized org (**org compilation** and **org
+  tests**), always targeting it explicitly via `--target-org`/`-o`.
+- Labels every result with its actual evidence type and never describes
+  one as another — see
+  [references/org-connection-safety.md](references/org-connection-safety.md)
+  ("Validation Evidence Taxonomy"). It does not claim a check passed
+  without having actually run it.
 - Reports assumptions, unresolved gaps, and any specification conflicts
   explicitly rather than concealing them.
+- Records all of the above in the required engineering journal entry (see
+  [SKILL.md](SKILL.md) Section 8).
 
-See [SKILL.md](SKILL.md) Section 4 for the full validation checklist.
+See [SKILL.md](SKILL.md) Section 5 for the full validation checklist.
 
 ## Project-specific business logic stays out of this skill
 

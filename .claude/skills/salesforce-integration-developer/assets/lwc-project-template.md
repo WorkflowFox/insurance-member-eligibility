@@ -5,6 +5,7 @@ directory and component names to the specific application's domain — do
 not copy any project-specific filenames from an example verbatim.
 
 ```text
+.forceignore                                       # Must include **/__tests__/** — see Notes
 force-app/
 └── main/
     └── default/
@@ -39,6 +40,14 @@ force-app/
 
 ## Notes
 
+- **A project-root `.forceignore` must include `**/__tests__/**`.**
+  Without it, a metadata deploy tries to compile Jest test files as
+  component source and fails on Jest-only syntax (e.g.,
+  `import { createElement } from 'lwc'`, which the Salesforce compiler
+  rejects with `LWC1702: Invalid LWC imported identifier`). This applies
+  regardless of execution mode — generate `.forceignore` even under
+  Metadata Only, since it is a correctness property of the source tree,
+  not something only Connected Validation/Deployment need.
 - Every component above must have a documented responsibility before it is
   created — do not scaffold a container component if a single component
   can present the full flow without becoming unwieldy.

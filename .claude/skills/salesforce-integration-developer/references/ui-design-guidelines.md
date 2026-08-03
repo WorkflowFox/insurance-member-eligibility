@@ -90,6 +90,13 @@ always come from the project's functional requirements.
 - Call `reportValidity()` (or the component's equivalent) before
   submitting, and focus the first invalid field, rather than silently
   ignoring an invalid submit attempt.
+- Gate on an explicit `=== false`, not plain falsiness:
+  `if (inputField.reportValidity() === false) { return; }`. Jest's base
+  `lightning-input` stub returns `undefined` from `reportValidity()`
+  (see [local-tooling-and-environment.md](local-tooling-and-environment.md)),
+  and a falsy-only check (`!inputField.reportValidity()`) will silently
+  block every test run — and would just as silently mask a real component
+  bug where validation is never actually being consulted.
 
 ---
 
