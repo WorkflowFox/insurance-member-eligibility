@@ -4,7 +4,9 @@ Production-inspired reference implementation demonstrating AI-assisted enterpris
 
 ![Member Eligibility Verification in Salesforce](showcase/assets/screenshots/03-live-verification.png)
 
-*Live end-to-end validation: Salesforce Lightning Web Component → Apex → Named Credential → FastAPI → eligibility result rendered in Salesforce.*
+**End-to-End Validation**
+
+Salesforce Lightning Web Component → Apex Service Layer → Named Credential → FastAPI Backend → OpenAPI Contract → Eligibility Decision → Result Rendered in Salesforce
 
 ## Why This Repository Exists
 
@@ -25,6 +27,31 @@ A Provider Relations representative receives a phone call from a healthcare prov
 ## Solution Overview
 
 A representative enters a Member ID in Salesforce. Salesforce calls a reusable backend service, which retrieves member and coverage information, evaluates eligibility, and returns a standardized decision — **Eligible**, **Ineligible**, **Unable to Determine**, or a member-not-found error. Salesforce collects the Member ID and displays the result; it never evaluates eligibility itself. The backend owns that decision entirely, so it can be reused by future channels without duplicating business rules.
+
+### 1. Salesforce Experience
+
+Provider Relations representatives verify member eligibility directly from Salesforce.
+
+![Salesforce](showcase/assets/screenshots/03-live-verification.png)
+
+### 2. OpenAPI Contract
+
+The backend follows an OpenAPI-first approach. The API contract is generated before implementation.
+
+![Swagger](showcase/assets/screenshots/02-swagger-api.png)
+
+
+### 3. Repository Structure
+
+The solution is organized around business artifacts, implementation assets, prompts, and engineering documentation.
+
+![Repository](showcase/assets/screenshots/04-project-structure.png)
+
+### 4. Engineering Documentation
+
+Every implementation step is documented to demonstrate an AI-assisted engineering workflow rather than code generation alone.
+
+![Documentation](showcase/assets/screenshots/05-readme.png)
 
 ## Validation Summary
 
