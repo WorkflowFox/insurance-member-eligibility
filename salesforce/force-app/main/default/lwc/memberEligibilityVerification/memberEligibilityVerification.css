@@ -1,0 +1,18 @@
+:host {
+    display: block;
+}
+
+/*
+ * SLDS has no utility for a colored accent border alone (slds-theme_* on
+ * a scoped notification colors the whole surface, which reads as louder
+ * than an enterprise app needs). This is the one visual cue with no
+ * native SLDS equivalent; it uses SLDS color tokens, with a static
+ * fallback, rather than hardcoded hex.
+ */
+.notification_error {
+    border-left: var(--slds-g-spacing-xx-small, 4px) solid var(--slds-g-color-error-1, #ea001e);
+}
+
+.notification_neutral {
+    border-left: var(--slds-g-spacing-xx-small, 4px) solid var(--slds-g-color-neutral-base-50, #706e6b);
+}

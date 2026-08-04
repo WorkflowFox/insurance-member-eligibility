@@ -1,76 +1,202 @@
 <template>
-    <lightning-card title="Member Eligibility Verification" icon-name="standard:contact">
-        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
-            <lightning-input
-                label="Member ID"
-                value={memberId}
-                onchange={handleMemberIdChange}
-                required
-                disabled={isLoading}
-            ></lightning-input>
-
-            <div class="slds-m-top_small">
-                <lightning-button
-                    variant="brand"
-                    label="Verify Eligibility"
-                    onclick={handleVerify}
-                    disabled={isVerifyDisabled}
-                ></lightning-button>
-            </div>
-
-            <template if:true={isLoading}>
-                <div class="slds-m-top_medium slds-align_absolute-center" role="status">
-                    <lightning-spinner alternative-text="Verifying eligibility" size="small"></lightning-spinner>
-                </div>
-            </template>
-
-            <template if:true={showError}>
-                <div class="slds-m-top_medium slds-text-color_error" role="alert">
+    <div class="slds-p-around_small slds-container_large slds-container_center">
+        <!-- Page Header -->
+        <header class="slds-box slds-m-bottom_medium">
+            <div class="slds-media slds-media_center">
+                <div class="slds-media__figure">
                     <lightning-icon
-                        icon-name="utility:error"
-                        variant="error"
-                        size="x-small"
-                        class="slds-m-right_x-small"
+                        icon-name="utility:shield"
+                        size="medium"
+                        alternative-text="Member Eligibility"
                     ></lightning-icon>
-                    <span>{errorMessage}</span>
                 </div>
-            </template>
+                <div class="slds-media__body">
+                    <p class="slds-text-body_small slds-text-color_weak slds-truncate">Workflow Insurance</p>
+                    <h1 class="slds-text-heading_medium slds-truncate">Member Eligibility Verification</h1>
+                    <p class="slds-text-body_small slds-text-color_weak">
+                        Verify current member eligibility and coverage information.
+                    </p>
+                </div>
+            </div>
+        </header>
 
-            <template if:true={showResult}>
-                <div class="slds-m-top_medium">
-                    <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
+        <!-- Search -->
+        <lightning-card title="Verify Eligibility" icon-name="utility:search" class="slds-m-bottom_medium">
+            <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+                <lightning-layout multiple-rows="false" vertical-align="end">
+                    <lightning-layout-item size="12" small-device-size="9" padding="around-x-small">
+                        <lightning-input
+                            type="search"
+                            name="memberId"
+                            label="Member ID"
+                            placeholder="Enter Member ID (e.g. M100234)"
+                            value={memberId}
+                            onchange={handleMemberIdChange}
+                            onkeydown={handleKeyDown}
+                            required
+                            disabled={isLoading}
+                            message-when-value-missing="Please enter a Member ID."
+                        ></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="3" padding="around-x-small">
+                        <lightning-button
+                            variant="brand"
+                            label="Verify Eligibility"
+                            title="Verify Eligibility"
+                            onclick={handleVerify}
+                            disabled={isVerifyDisabled}
+                        ></lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </lightning-card>
+
+        <!-- Loading -->
+        <template if:true={isLoading}>
+            <div class="slds-is-relative slds-p-vertical_medium slds-text-align_center" role="status" aria-live="polite">
+                <lightning-spinner alternative-text="Verifying eligibility" size="small"></lightning-spinner>
+                <p class="slds-p-top_medium slds-text-body_small slds-text-color_weak">Verifying eligibility&hellip;</p>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template if:true={showError}>
+            <div class={errorNotificationClass} role="alert">
+                <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                        <lightning-icon
+                            icon-name={errorIconName}
+                            variant={errorIconVariant}
+                            size="small"
+                            alternative-text="Alert"
+                        ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-text-heading_small">{errorHeading}</h2>
+                        <p>{errorMessage}</p>
+                        <p class="slds-text-body_small slds-m-top_x-small slds-text-color_weak">{errorSuggestion}</p>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Empty state (no search performed yet) -->
+        <template if:true={showEmptyState}>
+            <div class="slds-p-vertical_medium slds-text-align_center slds-text-color_weak">
+                <lightning-icon icon-name="utility:search" size="large" variant="bare" class="slds-m-bottom_small"></lightning-icon>
+                <p class="slds-text-body_regular">Enter a Member ID to verify eligibility.</p>
+            </div>
+        </template>
+
+        <!-- Result -->
+        <template if:true={showResult}>
+            <!-- Eligibility Summary: the most important outcome gets the most visual emphasis -->
+            <div class={statusSummaryClass} role="status" aria-label="Eligibility Summary">
+                <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
                         <lightning-icon
                             icon-name={statusIconName}
                             variant={statusIconVariant}
-                            size="small"
-                            class="slds-m-right_x-small"
+                            size="large"
+                            alternative-text=""
                         ></lightning-icon>
-                        <span class={statusTextClass}>{statusLabel}</span>
                     </div>
-
-                    <p class="slds-m-bottom_x-small">
-                        <strong>Member:</strong> {result.memberName} ({result.memberId})
-                    </p>
-                    <p class="slds-m-bottom_x-small">
-                        <strong>Reason:</strong> {result.reason}
-                    </p>
-                    <p class="slds-m-bottom_x-small">
-                        <strong>Evaluation Date:</strong> {result.evaluationDate}
-                    </p>
-
-                    <template if:true={hasCoverageDetails}>
-                        <p class="slds-m-bottom_x-small">
-                            <strong>Coverage Type:</strong> {result.coverageType}
-                        </p>
-                        <p class="slds-m-bottom_x-small">
-                            <strong>Effective Date:</strong> {result.effectiveDate}
-                        </p>
-                        <p class="slds-m-bottom_x-small">
-                            <strong>Termination Date:</strong> {result.terminationDate}
-                        </p>
-                    </template>
+                    <div class="slds-media__body">
+                        <p class="slds-text-title_caps">Eligibility Summary</p>
+                        <p class="slds-text-heading_large slds-m-vertical_xx-small">{statusLabel}</p>
+                        <p>{result.reason}</p>
+                    </div>
                 </div>
-            </template>
-        </div>
-    </lightning-card>
+            </div>
+
+            <lightning-card title="Details" icon-name="utility:contact">
+                <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+                    <!-- Member Information -->
+                    <h3 class="slds-text-title_caps slds-text-color_weak slds-m-bottom_small">Member Information</h3>
+                    <lightning-layout multiple-rows="true">
+                        <lightning-layout-item size="12" small-device-size="6" padding="around-small">
+                            <div class="slds-form-element">
+                                <span class="slds-form-element__label">Member</span>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">{result.memberName}</span>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" small-device-size="6" padding="around-small">
+                            <div class="slds-form-element">
+                                <span class="slds-form-element__label">Member ID</span>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">{result.memberId}</span>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+
+                    <!-- Coverage Details -->
+                    <template if:true={hasCoverageDetails}>
+                        <div class="slds-m-top_medium slds-p-top_medium slds-border_top">
+                            <h3 class="slds-text-title_caps slds-text-color_weak slds-m-bottom_small">Coverage Details</h3>
+                            <lightning-layout multiple-rows="true">
+                                <lightning-layout-item size="12" small-device-size="4" padding="around-small">
+                                    <div class="slds-form-element">
+                                        <span class="slds-form-element__label">Coverage</span>
+                                        <div class="slds-form-element__control">
+                                            <span class="slds-form-element__static">{result.coverageType}</span>
+                                        </div>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="4" padding="around-small">
+                                    <div class="slds-form-element">
+                                        <span class="slds-form-element__label">Effective Date</span>
+                                        <div class="slds-form-element__control">
+                                            <span class="slds-form-element__static">{formattedEffectiveDate}</span>
+                                        </div>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="4" padding="around-small">
+                                    <div class="slds-form-element">
+                                        <span class="slds-form-element__label">Termination Date</span>
+                                        <div class="slds-form-element__control">
+                                            <span class="slds-form-element__static">{formattedTerminationDate}</span>
+                                        </div>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </div>
+                    </template>
+
+                    <!-- Request Information: secondary, compact metadata -->
+                    <div class="slds-m-top_medium slds-p-top_medium slds-border_top slds-text-body_small slds-text-color_weak">
+                        <h3 class="slds-text-title_caps slds-m-bottom_small">Request Information</h3>
+                        <lightning-layout multiple-rows="true">
+                            <lightning-layout-item size="6" small-device-size="3" padding="around-small">
+                                <div class="slds-form-element">
+                                    <span class="slds-form-element__label">Verification Time</span>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">{formattedVerificationTime}</span>
+                                    </div>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" small-device-size="3" padding="around-small">
+                                <div class="slds-form-element">
+                                    <span class="slds-form-element__label">Evaluation Date</span>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">{formattedEvaluationDate}</span>
+                                    </div>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="12" small-device-size="6" padding="around-small">
+                                <div class="slds-form-element">
+                                    <span class="slds-form-element__label">Response Source</span>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">Member Eligibility Service</span>
+                                    </div>
+                                </div>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                </div>
+            </lightning-card>
+        </template>
+    </div>
 </template>
