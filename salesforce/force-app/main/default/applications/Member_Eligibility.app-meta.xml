@@ -10,9 +10,9 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
-    <label>Member Eligibility</label>
+    <label>Provider Relations</label>
     <navType>Standard</navType>
-    <tabs>Member_Eligibility</tabs>
+    <tabs>Provider_Relations</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Member_Eligibility_UtilityBar</utilityBar>
+    <utilityBar>Provider_Relations_UtilityBar</utilityBar>
 </CustomApplication>
