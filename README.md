@@ -2,6 +2,10 @@
 
 Production-inspired reference implementation demonstrating AI-assisted enterprise software engineering.
 
+![Member Eligibility Verification in Salesforce](showcase/assets/screenshots/03-live-verification.png)
+
+*Live end-to-end validation: Salesforce Lightning Web Component → Apex → Named Credential → FastAPI → eligibility result rendered in Salesforce.*
+
 ## Why This Repository Exists
 
 Most AI coding demonstrations focus on a single act: generating code from a prompt. This repository demonstrates the complete engineering lifecycle around that code — the parts that determine whether generated software is trustworthy enough for an enterprise to run.
