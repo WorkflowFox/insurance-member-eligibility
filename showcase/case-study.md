@@ -1,223 +1,138 @@
-# WorkflowFox Showcase #1
-
-# AI-Assisted Development of an Insurance Member Eligibility Verification System
-
----
+# WorkflowFox Case Study: AI-Assisted Member Eligibility Verification
 
 ## Executive Summary
 
-Member eligibility verification is one of the most common operations performed by healthcare insurance organizations.
+Workflow Insurance is a fictional healthcare insurance company created as the reference enterprise for WorkflowFox.
 
-Customer service representatives, provider support teams, and digital applications frequently need to answer a simple question:
+This showcase demonstrates how AI-assisted engineering can accelerate enterprise software delivery while maintaining the architectural discipline, documentation, and validation expected in production environments.
 
-> Is this member currently eligible for coverage?
+The solution implements a complete Member Eligibility Verification capability spanning Salesforce Lightning, FastAPI, and an OpenAPI-defined integration contract. Although the application uses synthetic data, the engineering methodology mirrors how enterprise software should be designed, implemented, validated, and documented.
 
-Although the business question is straightforward, the underlying implementation often involves multiple systems, complex business rules, and strict integration requirements.
-
-This showcase demonstrates how WorkflowFox used AI-assisted engineering to design and implement a production-inspired Member Eligibility Verification application.
-
-Rather than focusing only on code generation, the project demonstrates an end-to-end engineering workflow including business analysis, API-first design, backend implementation, Salesforce integration, automated testing, validation, and technical documentation.
-
-The goal is to demonstrate a repeatable engineering process that enterprise teams can adopt when modernizing software using AI-assisted development.
+Rather than demonstrating AI-generated code, this project demonstrates AI-assisted engineering.
 
 ---
 
-# The Business Problem
+## Project at a Glance
 
-Healthcare organizations receive thousands of eligibility verification requests every day.
-
-Examples include:
-
-- A provider confirming coverage before an appointment
-- A customer service representative answering member questions
-- A care management application validating eligibility
-- Internal systems performing downstream processing
-
-Although these requests appear simple, determining eligibility typically requires multiple pieces of information including:
-
-- Member identity
-- Coverage dates
-- Plan information
-- Current eligibility status
-- Business validation rules
-
-In many organizations this information resides across multiple systems, making eligibility verification slower and more complex than it initially appears.
-
-The objective of this showcase is to demonstrate how a modern API-first architecture can simplify this process.
+| Attribute | Value |
+|-----------|-------|
+| Industry | Healthcare Insurance |
+| Business Capability | Member Eligibility Verification |
+| Reference Enterprise | Workflow Insurance |
+| Frontend | Salesforce Lightning Experience |
+| Backend | FastAPI |
+| Integration | OpenAPI 3.1 |
+| Data Source | Synthetic Member & Coverage Data |
+| Status | End-to-End Validated |
 
 ---
 
-# Why Traditional Solutions Fall Short
+## Business Problem
 
-Traditional enterprise development often follows a sequential process:
+Provider Relations representatives frequently need to verify a member's eligibility before approving or scheduling healthcare services.
 
-Business Requirements
+In many organizations, this process requires navigating multiple systems, interpreting coverage information, and manually combining results before making a decision. As organizations grow, these manual workflows become increasingly difficult to maintain, resulting in slower response times, inconsistent decisions, and increased operational complexity.
 
-↓
-
-Architecture
-
-↓
-
-Development
-
-↓
-
-Testing
-
-↓
-
-Documentation
-
-↓
-
-Deployment
-
-Each phase introduces manual effort and communication overhead.
-
-As applications become larger, maintaining consistency between specifications, implementation, tests, and documentation becomes increasingly difficult.
-
-Modern AI coding assistants can accelerate software development, but without structured engineering practices they may also introduce inconsistency, incomplete implementations, or undocumented assumptions.
-
-WorkflowFox focuses on combining AI assistance with disciplined engineering practices rather than replacing them.
+This showcase demonstrates how a streamlined eligibility verification capability can simplify this workflow while providing a reusable architectural foundation for future insurance applications.
 
 ---
 
-# Our Solution
+## Business Outcomes
 
-This showcase demonstrates a production-inspired implementation of a Member Eligibility Verification service.
+This reference implementation demonstrates how enterprise AI engineering can deliver business value through disciplined software engineering.
 
-Key characteristics include:
+Key outcomes include:
 
-- API-first design using OpenAPI
-- Specification-driven development
-- AI-assisted implementation
-- Automated validation
-- Salesforce integration
-- Engineering journals documenting implementation decisions
-- Reproducible development workflow
-
-Rather than treating AI as an autonomous developer, the project treats AI as an engineering accelerator operating within clearly defined specifications and validation checkpoints.
+- Simplified the member eligibility verification workflow.
+- Demonstrated contract-first integration between Salesforce and backend services.
+- Established a reusable architecture for future insurance capabilities.
+- Applied AI-assisted engineering within a structured architecture-first development process.
+- Produced reusable engineering assets including architecture diagrams, engineering journals, and implementation documentation.
 
 ---
 
-# Solution Architecture
+## Solution Overview
 
-The reference implementation consists of:
+The solution consists of four primary components:
 
-- FastAPI backend
-- OpenAPI contract
-- Salesforce Lightning Web Component
-- Apex integration layer
-- Automated unit testing
-- Mock services for local development
-- Engineering documentation
-- Validation artifacts
+- Salesforce Lightning provides the user experience for Provider Relations representatives.
+- FastAPI exposes a REST API responsible for eligibility verification.
+- OpenAPI 3.1 defines the integration contract between Salesforce and the backend.
+- Synthetic member and coverage data supports repeatable development and validation.
 
-Every component is generated from shared specifications to maintain consistency across the solution.
+The implementation intentionally separates presentation, integration, business logic, and data access, following common enterprise architecture practices.
 
----
+Supporting architecture documentation includes:
 
-# AI-Assisted Engineering Approach
-
-This showcase follows the WorkflowFox engineering methodology:
-
-Discover
-
-↓
-
-Specify
-
-↓
-
-Design
-
-↓
-
-Contract
-
-↓
-
-Generate
-
-↓
-
-Validate
-
-Each implementation step is driven by structured specifications rather than ad hoc prompting.
-
-Reusable AI skills are responsible for generating implementation artifacts while validation ensures that generated software remains aligned with the original requirements.
+- System Context Diagram
+- Container Diagram
+- Runtime Sequence Diagram
+- Deployment Diagram
 
 ---
 
-# Implementation Highlights
+## Engineering Approach
 
-The implementation includes:
+WorkflowFox follows an architecture-first AI-assisted engineering methodology.
 
-- OpenAPI specification
-- FastAPI REST service
-- Salesforce Apex integration
-- Lightning Web Component
-- Automated backend tests
-- Apex tests
-- LWC Jest tests
-- Engineering journals
-- Architecture documentation
+The project was delivered using the following engineering workflow:
 
-The project demonstrates that AI-assisted engineering extends beyond source code generation to include documentation, testing, validation, and architectural consistency.
+1. Business Discovery
+2. Solution Architecture
+3. OpenAPI Contract Design
+4. AI-Assisted Implementation
+5. Continuous Validation
+6. Incremental Documentation
 
----
+Throughout development, AI accelerated implementation while architectural decisions, validation, and engineering quality remained under human ownership.
 
-# Validation
-
-Every implementation artifact was validated using automated testing and engineering review.
-
-Validation activities included:
-
-- Backend unit tests
-- Salesforce Apex tests
-- LWC Jest tests
-- OpenAPI contract verification
-- Architecture review
-- Manual engineering review
-
-Engineering journals document implementation decisions, assumptions, corrections, and lessons learned throughout the project.
+Every major implementation step was accompanied by engineering journals, architecture documentation, and validation evidence to ensure the solution remained transparent and reproducible.
 
 ---
 
-# Lessons Learned
+## Validation
 
-Several observations emerged during implementation:
+The completed solution was validated across the entire application stack.
 
-- Specifications significantly improve AI-generated code quality.
-- AI is most effective when operating within clearly defined architectural boundaries.
-- Validation remains essential regardless of how code is produced.
-- Engineering documentation should evolve alongside implementation rather than being treated as a separate activity.
+| Validation | Status |
+|------------|--------|
+| Backend API | ✅ |
+| OpenAPI Contract | ✅ |
+| Salesforce Deployment | ✅ |
+| Apex Integration | ✅ |
+| Lightning Web Component | ✅ |
+| End-to-End Verification | ✅ |
+| Architecture Documentation | ✅ |
+| Engineering Journals | ✅ |
 
-These lessons form the foundation of the WorkflowFox engineering methodology.
+The validated request flow consists of:
 
----
-
-# Business Value
-
-This reference implementation demonstrates how enterprise teams can:
-
-- Accelerate software delivery using AI-assisted engineering
-- Improve consistency between specifications and implementation
-- Reduce documentation drift
-- Increase confidence through automated validation
-- Create reusable engineering assets for future projects
+Provider Relations Representative → Salesforce Lightning → Apex → FastAPI → Eligibility Service → Synthetic Data → Salesforce → Provider Relations Representative
 
 ---
 
-# What's Next
+## Key Takeaways
 
-Future showcases will expand the Workflow Insurance reference enterprise with additional capabilities such as:
+This showcase demonstrates that AI-assisted engineering is most effective when combined with disciplined software engineering practices.
 
-- Prior Authorization
-- Claims Processing
-- Provider Search
-- Policy Administration
-- AI-assisted engineering workflows across additional enterprise platforms
+The project emphasizes:
 
-Together, these showcases will demonstrate repeatable patterns for modern enterprise software engineering.
+- Business-first solution design.
+- Architecture before implementation.
+- Contract-first integrations.
+- Human ownership of engineering decisions.
+- AI-assisted implementation and documentation.
+- Continuous validation throughout development.
+- Reusable engineering assets for future enterprise projects.
+
+WorkflowFox's objective is not simply to generate software faster, but to help enterprises build software that is easier to understand, validate, maintain, and evolve.
+
+---
+
+**Related Resources**
+
+- Architecture Documentation
+- Engineering Journals
+- API Specification
+- Source Code
+- Project README
