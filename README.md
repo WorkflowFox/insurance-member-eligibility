@@ -224,6 +224,12 @@ Future showcases are expected to expand the Workflow Insurance reference enterpr
 
 No implementation timeline is committed for any of the above. (`showcase/case-study.md`, "What's Next"; `docs/01-business-discovery.md`, "Out of Scope")
 
+## 🎥 Demo Video
+
+Watch the complete walkthrough on YouTube:
+
+https://youtu.be/ABq2aRiDK6w
+
 ## About WorkflowFox
 
 WorkflowFox helps enterprises design, build, and modernize software using AI-assisted engineering. Salesforce organizations are the initial beachhead because of deep implementation expertise — not a boundary on what the methodology can do. The long-term focus is enterprise software engineering across platforms.
