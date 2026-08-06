@@ -345,4 +345,198 @@ Explain why a local FastAPI service was appropriate for the reference implementa
 
 #### Temporary Tunnel
 
-Explain that the tunnel was used only to validate live connectivity
+Explain that the tunnel was used only to validate live connectivity between Salesforce and the local backend.
+
+It is not part of the target production architecture.
+
+#### No Production Authentication
+
+Explain that authentication was intentionally excluded because the Version 1 contract did not define a security scheme.
+
+Do not present this as a recommended production security pattern.
+
+#### Limited Scope
+
+Explain why completing one vertical business capability end to end is more valuable than partially implementing many technologies.
+
+---
+
+### 11. AI-Assisted Engineering
+
+Explain where AI accelerated the work:
+
+- requirements refinement,
+- documentation,
+- architecture artifacts,
+- backend generation,
+- Salesforce generation,
+- test generation,
+- UI refinement,
+- validation support,
+- engineering journals,
+- productization.
+
+Also explain where human intervention was essential:
+
+- defining business intent,
+- choosing architecture,
+- resolving contract discrepancies,
+- approving Salesforce org access,
+- reviewing generated code,
+- running live validation,
+- deciding what not to build.
+
+The key message is:
+
+AI accelerated disciplined engineering.
+
+It did not replace it.
+
+---
+
+### 12. Defects and Learning
+
+Mention that real execution caught defects that static generation did not.
+
+Examples supported by the sources include:
+
+- Salesforce deployment initially attempted to include LWC Jest test files,
+- Jest module resolution required correction,
+- input validation behavior differed under test stubs,
+- development tooling behaved poorly inside an iCloud-synchronized workspace.
+
+Explain the broader lesson:
+
+Generated code must be executed, tested, and reviewed in the real environment.
+
+Do not dwell excessively on implementation trivia.
+
+Use these examples to reinforce validation discipline.
+
+---
+
+### 13. Business Outcomes
+
+Discuss outcomes without inventing financial metrics.
+
+Supported outcomes include:
+
+- a simpler Provider Relations eligibility workflow,
+- consistent backend ownership of eligibility decisions,
+- reusable Salesforce-to-service integration,
+- clear separation of presentation and business logic,
+- a repeatable architecture for future insurance capabilities,
+- reusable engineering assets,
+- a transparent AI-assisted delivery process.
+
+---
+
+### 14. Lessons for Enterprise Teams
+
+Extract general lessons:
+
+- Begin with the business problem.
+- Understand why the current process exists before replacing it.
+- Define architecture before generating implementation.
+- Establish an API contract before integrating systems.
+- Keep business rules in the appropriate system boundary.
+- Use AI within explicit roles and constraints.
+- Validate generated software through real execution.
+- Treat documentation and engineering journals as first-class artifacts.
+- Complete a narrow vertical slice before adding infrastructure complexity.
+- Turn engineering work into reusable knowledge and authority assets.
+
+---
+
+### 15. Future Evolution
+
+Clearly separate future possibilities from the validated Version 1 implementation.
+
+Potential future evolution may include:
+
+- production identity and access management,
+- managed databases,
+- persistent cloud deployment,
+- observability,
+- CI/CD,
+- audit logging,
+- performance and security testing,
+- additional eligibility workflows,
+- claims,
+- prior authorization,
+- provider search,
+- member benefits,
+- additional enterprise channels.
+
+Do not imply these capabilities already exist.
+
+---
+
+### 16. Closing
+
+Conclude with the broader WorkflowFox message.
+
+This showcase is not primarily about FastAPI or Salesforce.
+
+It demonstrates how enterprises can combine:
+
+- business understanding,
+- enterprise architecture,
+- disciplined software engineering,
+- AI-assisted implementation,
+- continuous validation,
+- reusable documentation.
+
+The final message should be that AI-assisted engineering can help enterprises deliver software faster while making it easier to understand, validate, maintain, and evolve.
+
+---
+
+## Accuracy Rules
+
+Use the uploaded sources as the factual basis.
+
+Do not invent:
+
+- customer names,
+- production usage,
+- performance metrics,
+- cost savings,
+- user counts,
+- deployment scale,
+- security controls,
+- business outcomes not supported by the sources.
+
+Workflow Insurance is a fictional reference enterprise.
+
+Data is synthetic.
+
+The implementation is production-inspired, not production-ready.
+
+The end-to-end validation is real but limited to the documented demonstration scenario.
+
+---
+
+## Output Goal
+
+The final NotebookLM Video Overview should feel like the official companion walkthrough for WorkflowFox Showcase One:
+
+Member Eligibility Verification.
+
+It should be visually and narratively suitable for:
+
+- the WorkflowFox website,
+- YouTube,
+- LinkedIn,
+- prospective client discussions,
+- enterprise architecture audiences.
+
+The audience should finish with a clear understanding of:
+
+- the business problem,
+- the solution,
+- the architecture,
+- the engineering methodology,
+- the validation evidence,
+- the trade-offs,
+- the lessons,
+- the WorkflowFox approach to Enterprise AI Engineering.
