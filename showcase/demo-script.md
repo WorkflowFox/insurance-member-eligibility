@@ -1,11 +1,29 @@
-Introduction
+# WorkflowFox Showcase 1 Demo Script
 
-Business Problem
+## 1. Opening
 
-Architecture
+Introduce WorkflowFox and the showcase.
 
-Live Demo
+## 2. Business Problem
 
-Engineering Process
+Explain the Provider Relations eligibility challenge.
 
-Key Takeaways
+## 3. Solution Overview
+
+Explain Salesforce, FastAPI, and OpenAPI at a high level.
+
+## 4. Live Demo
+
+Show the Salesforce app and verify Member ID `M100234`.
+
+## 5. Architecture
+
+Show the container diagram and explain the system boundaries.
+
+## 6. Engineering Method
+
+Explain Discover → Specify → Design → Contract → Generate → Validate.
+
+## 7. Closing
+
+Summarize the business and engineering value.
