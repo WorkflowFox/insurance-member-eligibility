@@ -224,9 +224,16 @@ Future showcases are expected to expand the Workflow Insurance reference enterpr
 
 No implementation timeline is committed for any of the above. (`showcase/case-study.md`, "What's Next"; `docs/01-business-discovery.md`, "Out of Scope")
 
-## 🎥 Demo Video
+## 🎥 Walkthrough
 
-Watch the complete walkthrough on YouTube:
+Watch the complete end-to-end walkthrough on YouTube, including:
+
+- Business problem
+- Enterprise architecture
+- Salesforce implementation
+- FastAPI backend
+- Validation
+- Engineering lessons
 
 https://youtu.be/ABq2aRiDK6w
 
